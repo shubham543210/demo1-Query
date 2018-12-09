@@ -28,7 +28,7 @@ public class ControllerOne {
 		serviceDetails.addDetails(details);
 	}
 	
-	@RequestMapping("/details")
+	@RequestMapping("/details/get")
 	public Iterable<Details> findDetails()
 	{
 	return serviceDetails.findAll();	
