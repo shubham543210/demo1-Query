@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,31 +15,37 @@ import com.example.demo.service.ServiceDetails;
 
 @RestController
 public class ControllerOne {
-	@Autowired
+	@Inject
 	private ServiceDetails serviceDetails;
 	
-	@RequestMapping("/hi")
+	@GetMapping("/hi")
 	public String hello()
 	{
 		return "hello";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST ,value= "/details")
+	@PostMapping(value= "/details")
 	public void postDetails(@RequestBody Details details)
 	{
 		serviceDetails.addDetails(details);
 	}
 	
-	@RequestMapping("/details/get")
-	public Iterable<Details> findDetails()
+	@GetMapping("/details/get")
+	public Details findDetails()
 	{
 	return serviceDetails.findAll();	
 	}
 	
-	@RequestMapping("/specificDetails")
-	public List<Object> getSpecificDetails()
+	@GetMapping("/specificDetails")
+	public String getSpecificDetails()
 	{
 		return serviceDetails.getSpecificDetails();
+	}
+	
+	@GetMapping("/domain")
+	public String getMeDomain()
+	{
+		return serviceDetails.getDomain();
 	}
 
 }

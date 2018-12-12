@@ -9,7 +9,7 @@ import com.example.demo.beans.Details;
 
 public interface DomainRepository extends CrudRepository<Details,String> {
 	
-	@Query(value="SELECT name FROM details",nativeQuery=true)
-	 List<Object> getSpecificDetails();
+//	@Query(value="SELECT name FROM details",nativeQuery=true)
+//	 List<Object> getSpecificDetails();
 
 }
